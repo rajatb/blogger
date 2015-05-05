@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Social Authenticator</title>
+    <title>Authenticator</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
@@ -14,12 +14,12 @@
 
     <h1><span class="fa fa-sign-in"></span> Login</h1>
 
-    <% if (this.message && this.message.length > 0) { %>
+    <% if (typeof message !== 'undefined' && message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
     <% } %>
 
     <!-- LOGIN FORM -->
-    <form action="/login" method="post">
+    <form id="loginForm" method="post">
         <div class="form-group">
             <label>Email</label>
             <input type="text" class="form-control" name="email">
@@ -29,13 +29,20 @@
             <input type="password" class="form-control" name="password">
         </div>
 
-        <button type="submit" class="btn btn-warning btn-lg" name="login">Login</button>
-        <button type="submit" class="btn btn-warning btn-lg" name="signup">Signup</button>
+        <button type="submit" class="btn btn-warning btn-lg" name="login" onclick="submitForm('/login')">Login</button>
+        <button type="submit" class="btn btn-warning btn-lg" name="signup" onclick="submitForm('/signup')">Signup</button>
     </form>
 
     <hr>
 
 </div>
 </div>
+<script>
+    function submitForm(action)
+    {
+        document.getElementById('loginForm').action = action
+        document.getElementById('loginForm').submit()
+    }
+</script>
 </body>
 </html>
