@@ -1,5 +1,5 @@
-let mongoose = require('mongoose'),
-  bcrypt = require('bcrypt')
+let mongoose = require('mongoose')
+let bcrypt = require('bcrypt')
 
 require('songbird')
 
@@ -13,18 +13,7 @@ userSchema.methods.generateHash = async function(password) {
 }
 
 userSchema.methods.validatePassword = async function(password) {
-  return await bcrypt.promise.compare(password, this.local.password)
-}
-
-userSchema.methods.linkLocalAccount = async function({email, password}) {
-  this.local.email = email
-  this.local.password = await this.generateHash(password)
-  return await this.save()
-}
-
-userSchema.methods.unlinkAccount = async function(type) {
-  this[type] = undefined
-  return await this.save()
+  return await bcrypt.promise.compare(password, this.password)
 }
 
 module.exports = mongoose.model('User', userSchema)
