@@ -12,7 +12,7 @@ Time spent: 14
 - [x] Session and user accounts are persisted in a data store
 - [x] User can create and edit a blog post
 - [x] User can view blog posts with details on their Profile
-- [x] (Issues)User can comments on their blog posts on their Profile
+- [x ] (Issues)User can comments on their blog posts on their Profile
 - [ ] User can view a anyone's blog with posts and comments at the specified url
 - [x] Logged In users can comment on any blog post
 
