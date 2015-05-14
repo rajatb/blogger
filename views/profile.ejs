@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Authenticator</title>
+    <title>Blogger</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
@@ -14,6 +14,7 @@
     <div class="page-header text-center">
         <h1><span class="fa fa-user"></span> Profile Page</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <a href="/post" class="btn btn-default btn-sm">Create Post</a>
     </div>
 
     <% if (typeof message !== 'undefined' && message.length > 0) { %>
@@ -22,18 +23,48 @@
 
     <div class="row">
 
-        <!-- LOCAL INFORMATION -->
         <div class="well">
             <h3><span class="fa fa-laptop"></span> Local</h3>
 
-                <p>
-                    <strong>id</strong>: NOT IMPLEMENTED<br>
-                    <strong>email</strong>: NOT IMPLEMENTED<br>
-                    <strong>password</strong>: NOT IMPLEMENTED
-                </p>
+            <p>
+                <strong>id</strong>: <%= user.id %><br>
+                <strong>username</strong>: <%= user.username %><br>
+                <strong>email</strong>: <%= user.email %><br>
+                <!-- <strong>password</strong>: <%= user.password %><br> -->
+                <strong>Blog Title</strong>: <%= user.blogTitle %><br>
+                <strong>Description</strong>: <%= user.blogDescription %><br>
+            </p>
                 
         </div>
 
+    </div>
+    <% if(posts.length == 0) { %>
+        <div class="row">
+
+        <div class="well">
+            <h3>No Posts Right now!</h3>
+        </div>
+
+    </div>
+    <%}%>
+    <% for(var i=0; i<posts.length;i++) {%>
+    <div class="row">
+
+        <div class="well">
+            <h3><span class="fa fa-laptop"></span> Post Title: <%= posts[i].title %></h3>
+
+            <p>
+                <strong>Post Title:</strong> <%= posts[i].title %><br>
+                <strong>Delete:</strong> <a href="/DeletePost/<%= posts[i].id %>">DELETE</a><br>
+                <strong>Edit:</strong> <a href="/post/<%= posts[i].id %>">EDIT</a><br>
+                <strong>Created Date:</strong> <%= posts[i].createDate %></a><br>
+                <strong>Updated Date:</strong> <%= posts[i].updateDate %></a><br>
+            </p>
+                
+        </div>
+
+    </div>
+    <%}%>
 </div>
 </body>
 </html>
